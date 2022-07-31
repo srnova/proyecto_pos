@@ -38,9 +38,7 @@
   <!-- jQuery 3 -->
   <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap 3.3.7 -->
-  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="vistas/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
   <!-- FastClick -->
   <script src="vistas/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
@@ -56,15 +54,30 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <!-- =============================================== -->
+ <?php
 
-  
-  <!-- =============================================== -->
+ /*------ cabezote------ */
 
+  include "modulos/cabezote.php";
+
+  /* -----------MENU----- */
+
+  include "modulos/menu.php";
+
+  /* CONTENIDO */
+
+  include "modulos/contenido.php";
+
+  /* ---FOOTER--- */
+
+  include "modulos/footer.php";
+
+
+  ?>
     
 </div>
 <!-- ./wrapper -->
 
-<script src="js/pantilla.js"></script>
+<script src="vistas/js/pantilla.js"></script>
 </body>
 </html>
