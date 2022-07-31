@@ -9,6 +9,8 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+  <link rel="icon" href="vistas/img/plantilla/logo1.2.png">
+
   <!----------------------------------------
            PLUGIN CSS
     ------------------------------ -->
@@ -66,9 +68,31 @@
 
   /* CONTENIDO */
 
-  include "modulos/contenido.php";
+  if(isset($_GET["ruta"])){
 
-  /* ---FOOTER--- */
+    if($_GET["ruta"] == "inicio"||
+       $_GET["ruta"] == "usuarios"||
+       $_GET["ruta"] == "categorias"||
+       $_GET["ruta"] == "productos"||
+       $_GET["ruta"] == "clientes"||
+       $_GET["ruta"] == "ventas"||
+       $_GET["ruta"] == "crear-venta"||
+       $_GET["ruta"] == "reportes"){
+
+      include "modulos/".$_GET["ruta"].".php";
+
+      }else{  
+
+        include "modulos/404.php";       
+
+    }
+
+  }else{
+
+    include "modulos/inicio.php";
+  }
+
+    /* ---FOOTER--- */
 
   include "modulos/footer.php";
 
