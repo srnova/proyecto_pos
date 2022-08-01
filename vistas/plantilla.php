@@ -52,55 +52,62 @@
           CUERPO DEL DOCUMENTO
     ------------------------------ -->
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
 
  <?php
 
- /*------ cabezote------ */
+ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
-  include "modulos/cabezote.php";
+ echo '<div class="wrapper">';
 
-  /* -----------MENU----- */
+  /*------ cabezote------ */
 
-  include "modulos/menu.php";
+    include "modulos/cabezote.php";
 
-  /* CONTENIDO */
+    /* -----------MENU----- */
 
-  if(isset($_GET["ruta"])){
+    include "modulos/menu.php";
 
-    if($_GET["ruta"] == "inicio"||
-       $_GET["ruta"] == "usuarios"||
-       $_GET["ruta"] == "categorias"||
-       $_GET["ruta"] == "productos"||
-       $_GET["ruta"] == "clientes"||
-       $_GET["ruta"] == "ventas"||
-       $_GET["ruta"] == "crear-venta"||
-       $_GET["ruta"] == "reportes"){
+    /* CONTENIDO */
 
-      include "modulos/".$_GET["ruta"].".php";
+    if(isset($_GET["ruta"])){
 
-      }else{  
+      if($_GET["ruta"] == "inicio"||
+        $_GET["ruta"] == "usuarios"||
+        $_GET["ruta"] == "categorias"||
+        $_GET["ruta"] == "productos"||
+        $_GET["ruta"] == "clientes"||
+        $_GET["ruta"] == "ventas"||
+        $_GET["ruta"] == "crear-venta"||
+        $_GET["ruta"] == "reportes"){
 
-        include "modulos/404.php";       
+        include "modulos/".$_GET["ruta"].".php";
 
+        }else{  
+
+          include "modulos/404.php";       
+
+      }
+
+    }else{
+
+      include "modulos/inicio.php";
     }
 
+      /* ---FOOTER--- */
+
+    include "modulos/footer.php";
+
+    echo '</div>';
+    
   }else{
 
-    include "modulos/inicio.php";
+    include "modulos/login.php";
+
   }
 
-    /* ---FOOTER--- */
-
-  include "modulos/footer.php";
-
-
   ?>
-    
-</div>
-<!-- ./wrapper -->
+
 
 <script src="vistas/js/pantilla.js"></script>
 </body>
