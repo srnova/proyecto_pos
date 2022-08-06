@@ -45,67 +45,49 @@
 
             <tbody>
 
-              <tr>
-                <td>1</td>
-                <td>Usuario Administrador</td>
-                <td>admin</td>
-                <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                <td>Administrador</td>
-                <td><button class="btn btn-success btn-xs">Activado</button></td>
-                <td>2022-01-01 05:22:39</td>
-                <td>
+            <?php 
 
-                  <div class="btn-group">
-                    
-                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+            $item = null;
+            $valor = null;
 
-                  </div>
+            $usuarios = controladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-                </td>
+            foreach ($usuarios as $key => $value){
 
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Usuario Administrador</td>
-                <td>admin</td>
-                <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                <td>Administrador</td>
-                <td><button class="btn btn-success btn-xs">Activado</button></td>
-                <td>2022-01-01 05:22:39</td>
-                <td>
+              echo ' <tr>
+                      <td>1</td>
+                      <td>'.$value["nombre"].'</td>
+                      <td>'.$value["usuario"].'</td>';
 
-                  <div class="btn-group">
-                    
-                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                      if($value["foto"] != ""){
 
-                  </div>
+                        echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+                      
+                      }else{
 
-                </td>
+                        echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                      }
 
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Usuario Administrador</td>
-                <td>admin</td>
-                <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                <td>Administrador</td>
-                <td><button class="btn btn-danger btn-xs">Desactivado</button></td>
-                <td>2022-01-01 05:22:39</td>
-                <td>
+                      echo '<td>'.$value["perfil"].'</td>
+                      <td><button class="btn btn-success btn-xs">Activado</button></td>
+                      <td>'.$value["ultimo_login"].'</td>
+                      <td>
 
-                  <div class="btn-group">
-                    
-                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                        <div class="btn-group">
+                          
+                          <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                          <button class="btn btn-danger"><i class="fa fa-times"></i></button>
 
-                  </div>
+                        </div>
 
-                </td>
+                      </td>
 
-              </tr>
+                    </tr>';
 
+            }
+            
+            ?>             
+              
             </tbody>
 
           </table>
