@@ -31,11 +31,32 @@ class ControladorUsuarios{
               $_SESSION["foto"] = $respuesta["foto"];
               $_SESSION["perfil"] = $respuesta["perfil"];
 
-              echo '<script>
+              /* REGISTRAR EL ULTIMO LOGIN */
 
-                  window.location = "inicio";
+              date_default_timezone_set('America/Bogota');
 
-              </script>';
+              $fecha = date('Y-m-d');
+              $hora = date('H:i:s');
+
+              $fechaActual = $fecha.''.$hora;
+
+              $item1 = "ultimo_login";
+              $valor1 = $fechaActual;
+
+              $item2 = "id";
+              $valor2 = $respuesta["id"];
+
+              $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+              if($ultimoLogin == "ok"){
+
+                echo '<script>
+
+                    window.location = "inicio";
+
+                </script>';
+
+              }
             
             }else{
 
@@ -131,7 +152,7 @@ class ControladorUsuarios{
 
         $datos = array("nombre" => $_POST["nuevoNombre"],
                         "usuario" => $_POST["nuevoUsuario"],
-                        "password" => $_POST["nuevoPassword"],
+                        "password" => $encriptar,
                         "perfil" => $_POST["nuevoPerfil"],
                         "foto" => $ruta);
 
@@ -147,9 +168,8 @@ class ControladorUsuarios{
                   title: "¡El usuario ha sido guardado correctamente!",
                   showConfirmButton: true,
                   confirmButtonText: "Cerrar"
-                  closeOnConfirm: false
-
-              }).then((result)=>{
+                  
+              }).then(function(result){
 
                   if(result.value){
                   
@@ -173,10 +193,9 @@ class ControladorUsuarios{
                 type: "error",
                 title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
                 showConfirmButton: true,
-                confirmButtonText: "Cerrar",
-                closeOnConfirm: false 
-
-              }).then((result)=>{
+                confirmButtonText: "Cerrar"
+                
+              }).then(function(result){
 
                 if(result.value){
                   
@@ -209,7 +228,7 @@ class ControladorUsuarios{
             EDITAR USUARIO
         =============================================*/
 
-  public function ctrEditarUsuario(){
+  static public function ctrEditarUsuario(){
 
     if(isset($_POST["editarUsuario"])){
 
@@ -246,7 +265,7 @@ class ControladorUsuarios{
             
           }
     
-            
+          /* imagenes pro defecto de PHP */  
     
             
       
@@ -322,7 +341,7 @@ class ControladorUsuarios{
 
         }else{
 
-            $encriptar = $passwordActual;
+            $encriptar = $_POST["passwordActual"];
 
         }            
 
@@ -378,6 +397,48 @@ class ControladorUsuarios{
 
     }
   }
-}
 
+  /* -----BORRAR USUARIO---- */
   
+  static public function ctrBorrarUsuario(){
+    
+    if(isset($_GET["idUsuario"])){
+
+      $tabla ="usuarios";
+      $datos = $_GET["idUsuario"];
+
+      if($_GET["fotoUsuario"] != ""){
+
+        unlink($_GET["fotoUsuario"]);
+        rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+
+      }
+
+      $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+
+      if($respuesta == "ok"){
+
+        echo'<script>
+
+        swal({
+            type: "success",
+            title: "El usuario ha sido borrado correctamente",
+            showConfirmButton: true,
+            confirmButtonText: "Cerrar"
+            }).then(function(result){
+                if (result.value) {
+
+                window.location = "usuarios";
+
+                }
+              })
+
+        </script>';
+
+      }		
+
+    }
+
+  }
+
+}

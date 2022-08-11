@@ -11,7 +11,7 @@ class AjaxUsuarios{
 
 	public $idUsuario;
 
-	public function ajaxEditarUsuario(){
+	static public function ajaxEditarUsuario(){
 
 		$item = "id";
 		$valor = $this->idUsuario;
@@ -30,7 +30,7 @@ class AjaxUsuarios{
 	public $activarUsuario;
 	public $activarId;
 
-	public function ajaxActivarUsuario(){
+	static public function ajaxActivarUsuario(){
 		$tabla = "usuarios";
 
 		$item1 = "estado";
@@ -64,7 +64,7 @@ class AjaxUsuarios{
 	/*=============================================
 	EDITAR USUARIO
 	=============================================*/	
-	if(isset($_POST["idUsuario"])){
+if(isset($_POST["idUsuario"])){
 
 	$editar = new AjaxUsuarios();
 	$editar->idUsuario = $_POST["idUsuario"];
@@ -81,5 +81,16 @@ if(isset($_POST["activarUsuario"])){
 	$activarUsuario -> activarUsuario = $_POST["activarUsuario"];
 	$activarUsuario -> activarId = $_POST["activarId"];
 	$activarUsuario -> ajaxActivarUsuario();
+
+}
+
+/*=============================================
+VALIDAR USUARIO
+=============================================*/	
+if(isset($_POST["validarUsuario"])){
+
+	$valUsuario = new AjaxUsuarios();
+	$valUsuario -> validarUsuario = $_POST["validarUsuario"];
+	$valUsuario -> ajaxActivarUsuario();
 
 }
