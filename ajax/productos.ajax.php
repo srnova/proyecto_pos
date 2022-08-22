@@ -44,7 +44,7 @@ if(isset($_POST["idCategoria"])){
 
     $codigoProducto = new AjaxUsuarios();
     $codigoProducto -> idCategoria = $_POST["idCategoria"];
-    $codigoProducto -> ajaxCrearCodigoProducto();
+    $codigoProducto -> ajaxCrearCodigoProductos();
 }
 
 /* EDITAR PRODUCTO */
@@ -53,6 +53,6 @@ if(isset($_POST["idProducto"])){
 
     $editarProducto = new AjaxUsuarios();
     $editarProducto -> idCategoria = $_POST["idCategoria"];
-    $editarProducto -> ajaxCrearEditarProducto();
+    $editarProducto -> ajaxCrearEditarProductos();
 }
     

@@ -22,7 +22,7 @@ class ControladorUsuarios{
 
           if($respuesta["usuario"] ==  $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
-            if($respuesta["estado"] == 1){
+            if($respuesta["estado"] == 0){
 
               $_SESSION["iniciarSesion"] = "ok";                      
               $_SESSION["id"] = $respuesta["id"];
