@@ -31,7 +31,7 @@ class ControladorUsuarios{
               $_SESSION["foto"] = $respuesta["foto"];
               $_SESSION["perfil"] = $respuesta["perfil"];
 
-              /* REGISTRAR EL ULTIMO LOGIN */
+              /* REGISTRAR fecha - ULTIMO LOGIN */
 
               date_default_timezone_set('America/Bogota');
 

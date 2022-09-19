@@ -5,7 +5,7 @@ require_once "../modelos/usuarios.modelo.php";
 
 class AjaxUsuarios{
 
-	/*=============================================
+	/*===========================================
 	EDITAR USUARIO
 	=============================================*/	
 
@@ -23,8 +23,8 @@ class AjaxUsuarios{
 	}
 
 
-	/*=============================================
-	ACTIVAR USUARIO
+	/*===========================================
+	          ACTIVAR USUARIO
 	=============================================*/	
 
 	public $activarUsuario;
@@ -42,7 +42,7 @@ class AjaxUsuarios{
 		$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
 	}
-	/*=============================================
+	/*===========================================
 	VALIDAR NO REPETIR USUARIO
 	=============================================*/	
 
@@ -85,7 +85,7 @@ if(isset($_POST["activarUsuario"])){
 }
 
 /*=============================================
-VALIDAR USUARIO
+VALIDAR USUARIO - no repetir
 =============================================*/	
 if(isset($_POST["validarUsuario"])){
 

@@ -2,25 +2,22 @@
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 =============================================*/
 
-var table = $('.tablaProductos').DataTable({
+// $.ajax({
 
-  "ajax":"ajax/datatable-productos.ajax.php",
-  "columnDefs": [
+// 	url: "ajax/datatable-productos.ajax.php",
+// 	success:function(respuesta){
+		
+// 		console.log("respuesta", respuesta);
 
-    {
-      "targets": -9,
-      "data": null,
-      "defaultContent": '<img class="img-thumbnail imgTabla" width="40px">'
+// 	}
 
-    },
+// })
 
-    {
-      "targets": -1,
-      "data": null,
-      "defaultContent": '<div class="btn-group"><button class="btn btn-warning btnEditarProducto" idProducto><i class="fa fa-pencil"></i></button><button class="btn btn-danger btnEliminarProducto" idProducto codigo imagen><i class="fa fa-times"></i></button></div>'
-    }
-  ],
-
+$('.tablaProductos').DataTable( {
+    "ajax": "ajax/datatable-productos.ajax.php",
+    "deferRender": true,
+	"retrieve": true,
+	"processing": true,
 	 "language": {
 
 			"sProcessing":     "Procesando...",
@@ -48,7 +45,7 @@ var table = $('.tablaProductos').DataTable({
 
 	}
 
-} )
+} );
 
 /*=============================================
 CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
@@ -72,7 +69,7 @@ $("#nuevaCategoria").change(function(){
       success:function(respuesta){
 
       	if(!respuesta){
-			
+
       		var nuevoCodigo = idCategoria+"01";
       		$("#nuevoCodigo").val(nuevoCodigo);
 
@@ -80,7 +77,7 @@ $("#nuevaCategoria").change(function(){
 
       		var nuevoCodigo = Number(respuesta["codigo"]) + 1;
           	$("#nuevoCodigo").val(nuevoCodigo);
- 
+
       	}
                 
       }
@@ -89,80 +86,6 @@ $("#nuevaCategoria").change(function(){
 
 })
 
-/*=============================================
-ACTIVAR LOS BOTONES CON ID
-=============================================*/
-
- $('.tablaProductos tbody').on('click', 'button', function (){
-
-	var data = table.row( $(this).parents('tr') ).data();
-
-	$(this).attr("idProducto", data[9])
-	$(this).attr("codigo", data[2])
-	$(this).attr("imagen", data[1])
-
- } );
-
- /*=============================================
-FUNCION PARA CARGAR LAS IMAGENES
-=============================================*/
-
-function cargarImagen(){
-
-	var imgTabla = $(".imgTabla");
-	for(var i = 0; i < imgTabla.length; i ++){
-	  var data = cable.row( $(imgTabla[i]).parents("tr")).data();
-    $(imgTabla[i]).attr("src", data[1]);
-  }
-}
-
-/*=============================================
-CARGAMOS LAS IMAGENES
-=============================================*/
-
-setTimeout(function(){
-  cargarImagen();
-
-},300)
-
-/*=============================================
-CARGAMOS IMAGENES CUANDO INTERACTUAMOS
-=============================================*/
-
-$(".datatables_paginate").click(function(){
-
-	cargarImagenes();
-})
-
-/*=============================================
-CARGAMOS LAS IMAGENES CON EL BUSCADOR
-=============================================*/
-
-$("input[aria-controls='DataTables_Table_0']").focus(function(){
-
-	$(document).keyup(function(event){
-    event.preventDefault();
-    cargarImagenes();
-  })
-})
-
-/*=============================================
-CARGAMOS LAS IMAGENES CON FILTRO DE CANTIDAD
-=============================================*/
-
-$("select[name='DataTables_Table_0']").change(function(){
-
-	cargarImagenes();
-})
-
-/*=============================================
-CARGAMOS LAS IMAGENES CON FILTRO DE ORDENAR
-=============================================*/
-
-$(".sorting").click(function(){
-
-	cargarImagenes();
-})
 /*=============================================
 AGREGANDO PRECIO DE VENTA
 =============================================*/
@@ -184,7 +107,7 @@ $("#nuevoPrecioCompra, #editarPrecioCompra").change(function(){
 
 	}
 
-}) 
+})
 
 /*=============================================
 CAMBIO DE PORCENTAJE
@@ -229,13 +152,13 @@ SUBIENDO LA FOTO DEL PRODUCTO
 
 $(".nuevaImagen").change(function(){
 
-	var imagen = this.files[0]; 
+	var imagen = this.files[0];
 	
 	/*=============================================
   	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
   	=============================================*/
 
-    if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
   		$(".nuevaImagen").val("");
 
@@ -339,7 +262,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
   })
 
 })
- 
+
 /*=============================================
 ELIMINAR PRODUCTO
 =============================================*/
@@ -370,5 +293,5 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 
 	})
 
-}); 
+})
 	

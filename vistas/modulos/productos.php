@@ -44,7 +44,7 @@
             </tr>
 
             </thead>            
-
+            
           </table>
 
         </div>        
@@ -84,6 +84,7 @@ MODAL AGREGAR PRODUCTO
            <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
                 <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" required>
 
                   <option value="">Seleccionar categoría</option>
@@ -110,6 +111,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
                 <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" readonly required>
 
               </div>
@@ -132,6 +134,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                
                 <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Cantidad disponible" required>
 
               </div>
